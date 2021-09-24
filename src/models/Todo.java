@@ -22,7 +22,7 @@ import lombok.Setter;
     @NamedQuery(
                 name = "getAllTodos",
                 query = "SELECT m FROM Todo AS m ORDER BY m.id DESC"
-            )
+           )
 })
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
