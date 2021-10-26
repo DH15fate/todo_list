@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,9 +36,13 @@ public class IndexServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         List<Todo> todos = em.createNamedQuery("getAllTodos",Todo.class).getResultList();
-        response.getWriter().append(Integer.valueOf(todos.size()).toString());
 
         em.close();
+
+        request.setAttribute("todos",todos);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/index.jsp");
+        rd.forward(request,response);
     }
 
 }
