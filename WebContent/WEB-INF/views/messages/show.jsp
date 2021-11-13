@@ -1,24 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:import url = "/WEB-INF/layout/app.jsp" >
+<c:import url="/WEB-INF/layout/app.jsp">
 
-<c:param name = "content">
+    <c:param name="content">
+        <c:choose>
+            <c:when test="${todo != null }">
+                <h2>id:${todo.id}のTodoの詳細ページ</h2>
+                <table class="table table-dark table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">タイトル</th>
+                            <td><c:out value="${todo.title }" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">詳細</th>
+                            <td><c:out value="${todo.content }" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">作成日時</th>
+                            <td><fmt:formatDate value="${todo.created_at}"
+                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">更新日時</th>
+                            <td><fmt:formatDate value="${todo.updated_at}"
+                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" onclick = "location.href = '${pageContext.request.contextPath }/index'"class="btn btn-outline-dark btn-sm">
+                        一覧にもどる
+                </button>
 
-    <h2>id:${Todo.id}のTodoの詳細ページ</h2>
+                <button type="button" onclick = "location.href = '${pageContext.request.contextPath }/edit?id=${todo.id}'"class="btn btn-outline-dark btn-sm">
+                        編集する
+                </button>
+            </c:when>
 
-    <p>タイトル:<c:out value = "${todo.title }" /></p>
-    <p>詳細:<c:out value = "${todo.content }" /></p>
-    <p>作成日時:<fmt:formatDate value = "${todo.created_at}" pattern = "yyyy-MM-dd HH:mm:ss"/></p>
-    <p>更新日時:<fmt:formatDate value = "${todo.updated_at}" pattern = "yyyy-MM-dd HH:mm:ss"/></p>
-
-    <button type="button" class="btn btn-outline-dark btn-sm">
-        <p><a href = "${pageContext.request.contextPath }/index">一覧にもどる</a></p>
-    </button>
-
-    <button type="button" class="btn btn-outline-dark btn-sm">
-    <p><a href = "${pageContext.request.contextPath }/edit?id=${todo.id}">編集する</a></p>
-    </button>
-
-</c:param>
+            <c:otherwise>
+                <h2>お探しのデータは見つかりませんでした</h2>
+            </c:otherwise>
+        </c:choose>
+    </c:param>
 </c:import>
