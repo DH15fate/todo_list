@@ -7,8 +7,11 @@
         <form method = "POST" action = "${pageContext.request.contextPath }/create">
             <c:import url="_form.jsp"></c:import>
         </form>
+        <br>
+        <button type="button" onclick = "location.href = '${pageContext.request.contextPath}/index'" class="btn btn-outline-dark btn-sm">
+            一覧に戻る
+        </button>
 
-        <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
 
     </c:param>
 </c:import>
