@@ -49,6 +49,12 @@ public class CreateServlet extends HttpServlet {
             String content = request.getParameter("content");
             m.setContent(content);
 
+            String deadline = request.getParameter("deadline");
+            m.setDeadline(deadline);
+
+            int complete_flag = 1;
+            m.setComplete_flag(complete_flag);
+
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setCreated_at(currentTime);
             m.setUpdated_at(currentTime);
@@ -69,6 +75,7 @@ public class CreateServlet extends HttpServlet {
                 //データベースに保存
                 em.persist(m);
                 em.getTransaction().commit();
+                request.getSession().setAttribute("flush","登録が完了しました");
                 em.close();
                 response.sendRedirect(request.getContextPath() + "/index");
             }
