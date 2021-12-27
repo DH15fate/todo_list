@@ -13,8 +13,12 @@ body {
 
 #content {
     width: 94%;
+    height:500px;
     margin-top: 15px;
     padding-left: 3%;
+    background-image: url('/WEB-INF/layout/black_001.jpg');
+    background-size: auto;
+
 }
 
 h1 {
@@ -49,13 +53,8 @@ table, tr, th, td {
     border: 1px solid #cccccc;
 }
 
-table {
-    width: 100%;
-    table-layout: fixed;
-}
-
 th {
-    width: 26%;
+    width: 15%;
     padding: 10px 2%;
 }
 
@@ -69,8 +68,4 @@ button {
     padding: 10px 15px;
     justify-content:space-around;
     display:flex;
-}
-
-#footer {
-    text-align: center;
 }
