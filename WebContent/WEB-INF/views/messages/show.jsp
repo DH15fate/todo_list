@@ -7,7 +7,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${todo != null }">
-                <h2>id:${todo.id}のTodoの詳細ページ</h2>
+                <h2>Todoの詳細ページ</h2>
                 <table class="table table-dark table-striped">
                     <tbody>
                         <tr>
@@ -17,6 +17,10 @@
                         <tr>
                             <th scope="row">詳細</th>
                             <td><c:out value="${todo.content }" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">締切日</th>
+                            <td><c:out value="${todo.deadline }" /></td>
                         </tr>
                         <tr>
                             <th scope="row">作成日時</th>
