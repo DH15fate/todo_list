@@ -40,6 +40,7 @@ public class DestroyServlet extends HttpServlet {
             em.getTransaction().begin();
             em.remove(m);
             em.getTransaction().commit();
+            request.getSession().setAttribute("flush","削除が完了しました");
             em.close();
 
             //セッションスコープ上の不要になったデータを削除
@@ -49,6 +50,28 @@ public class DestroyServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index");
 
         }
+    }
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        EntityManager em = DBUtil.createEntityManager();
+
+      //該当Idの詳細を１件DBから取得
+        Todo m = em.find(Todo.class,Integer.parseInt(request.getParameter("id")));
+
+        em.getTransaction().begin();
+        em.remove(m);
+        em.getTransaction().commit();
+        request.getSession().setAttribute("flush","削除が完了しました");
+        em.close();
+
+        //セッションスコープ上の不要になったデータを削除
+        request.getSession().removeAttribute("todo_id");
+
+        //indexページへリダイレクト
+        response.sendRedirect(request.getContextPath() + "/index");
     }
 
 }
