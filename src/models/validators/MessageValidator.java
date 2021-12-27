@@ -20,6 +20,11 @@ public class MessageValidator {
             errors.add(content_error);
         }
 
+        String deadline_error = validateDeadline(m.getDeadline());
+        if(!deadline_error.equals("")) {
+            errors.add(deadline_error);
+        }
+
         return errors;
 
     }
@@ -39,6 +44,17 @@ public class MessageValidator {
             return "内容を入力してください";
         }
 
+
+        return "";
+
+    }
+
+    //締切日入力チェック
+    private static String validateDeadline(String deadline) {
+
+        if(deadline == null || deadline.equals("")) {
+            return "締切日を入力してください";
+        }
         return "";
 
     }
