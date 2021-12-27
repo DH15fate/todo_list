@@ -21,7 +21,7 @@ import lombok.Setter;
 @NamedQueries({
     @NamedQuery(
                 name = "getAllTodos",
-                query = "SELECT m FROM Todo AS m ORDER BY m.id DESC"
+                query = "SELECT m FROM Todo AS m ORDER BY m.id ASC"
            )
 })
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
@@ -41,9 +41,15 @@ public class Todo {
     @Column(name = "content", length = 255, nullable = false)
     private String content;
 
+    @Column(name = "deadline",nullable = false)
+    private String deadline;
+
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
+    @Column(name = "complete_flag",nullable = false)
+    private Integer complete_flag;
 }
